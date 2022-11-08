@@ -3,6 +3,7 @@ package com.example.projectgala.ViewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.room.Query
 import com.example.projectgala.Database.NotesDatabase
 import com.example.projectgala.Model.Notes
 import com.example.projectgala.Repository.NotesRepository
@@ -18,6 +19,11 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
         repository.insertNotes(notes)
     }
     fun getNotes():LiveData<List<Notes>> = repository.getAllNotes()
+
+    fun getLowNotes(): LiveData<List<Notes>> = repository.getLowNotes()
+    fun getMediumNotes(): LiveData<List<Notes>> = repository.getMediumNotes()
+
+    fun getHighNotes(): LiveData<List<Notes>> = repository.getHighNotes()
 
     fun deleteNotes(id: Int){
         repository.deleteNotes(id)

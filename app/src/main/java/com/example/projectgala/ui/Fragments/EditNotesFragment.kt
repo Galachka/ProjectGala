@@ -3,10 +3,9 @@ package com.example.projectgala.ui.Fragments
 import android.os.Bundle
 import android.provider.SyncStateContract.Helpers.update
 import android.text.format.DateFormat
+import android.view.*
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -16,6 +15,7 @@ import com.example.projectgala.R
 import com.example.projectgala.ViewModel.NotesViewModel
 import com.example.projectgala.databinding.FragmentEditNotesBinding
 import com.example.projectgala.databinding.ItemNotesBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.*
 
 class EditNotesFragment : Fragment() {
@@ -30,6 +30,7 @@ class EditNotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEditNotesBinding.inflate(layoutInflater,container,false)
+        setHasOptionsMenu(true)
         binding.editTitle.setText(oldnotes.data.title)
         binding.editSubtitle.setText(oldnotes.data.subtitle)
         binding.editNotes.setText(oldnotes.data.notes)
@@ -98,5 +99,31 @@ class EditNotesFragment : Fragment() {
         Toast.makeText(requireContext(), "Notes Edited Successfully", Toast.LENGTH_SHORT).show()
         Navigation.findNavController(it!!)
             .navigate(R.id.action_editNotesFragment_to_homeFragment)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu,menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.menu_delete){
+            val bottomSheet: BottomSheetDialog =
+                BottomSheetDialog(requireContext(),R.style.BottomSheetStyle)
+            bottomSheet.setContentView(R.layout.dialog_delete)
+
+            val texviewYes = bottomSheet.findViewById<TextView>(R.id.dialog_yes)
+            val texviewNo = bottomSheet.findViewById<TextView>(R.id.dialog_no)
+
+            texviewYes?.setOnClickListener {
+                viewModel.deleteNotes(oldnotes.data.id!!)
+                bottomSheet.dismiss()
+            }
+            texviewNo?.setOnClickListener {
+                bottomSheet.dismiss()
+            }
+            bottomSheet.show()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
