@@ -3,10 +3,13 @@ package com.example.projectgala.ui.Adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectgala.Model.Notes
 import com.example.projectgala.R
 import com.example.projectgala.databinding.ItemNotesBinding
+import com.example.projectgala.ui.Fragments.HomeFragmentDirections
 
 class NotesAdapter(val requireContext: Context,val notesList: List<Notes>) : RecyclerView.Adapter<NotesAdapter.notesViewHolder>() {
     class notesViewHolder(val binding: ItemNotesBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -35,7 +38,12 @@ class NotesAdapter(val requireContext: Context,val notesList: List<Notes>) : Rec
                 holder.binding.viewPriority.setBackgroundResource(R.drawable.red_dot)
             }
         }
+        holder.binding.root.setOnClickListener{
+            val action =HomeFragmentDirections.actionHomeFragmentToEditNotesFragment(data)
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     override fun getItemCount() = notesList.size
 }
+
