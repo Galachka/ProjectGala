@@ -23,32 +23,35 @@
 
             <ImageView
                 android:id="@+id/allNotes"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/btn_filter"/>
+                android:layout_width="43dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/btn_filter" />
 
             <TextView
+                android:fontFamily="@font/bold"
                 android:id="@+id/filterHigh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/red_color"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:background="@drawable/back_filter"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
+                android:paddingEnd="23dp"
+                android:paddingStart="23dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="High"/>
 
             <TextView
+                android:fontFamily="@font/bold"
                 android:id="@+id/filterMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/yellow_color"
+                android:textColor="@color/bac_color"
                 android:textSize="18sp"
                 android:background="@drawable/back_filter"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
+                android:paddingEnd="23dp"
+                android:paddingStart="23dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:layout_marginStart="10dp"
@@ -56,14 +59,15 @@
                 android:text="Medium"/>
 
             <TextView
+                android:fontFamily="@font/bold"
                 android:id="@+id/filterLow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/green_color"
+                android:textColor="@color/bac_color"
                 android:textSize="18sp"
                 android:background="@drawable/back_filter"
-                android:paddingEnd="30dp"
-                android:paddingStart="30dp"
+                android:paddingEnd="23dp"
+                android:paddingStart="23dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Low"/>

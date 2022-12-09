@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectgala.Model.Notes
 import com.example.projectgala.R
@@ -47,3 +48,12 @@ class NotesAdapter(val requireContext: Context,val notesList: List<Notes>) : Rec
     override fun getItemCount() = notesList.size
 }
 
+class NotesDiffCallback : DiffUtil.ItemCallback<Notes>() {
+    override fun areItemsTheSame(oldItem: Notes, newItem: Notes): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Notes, newItem: Notes): Boolean {
+        return oldItem.title == newItem.title
+    }
+}

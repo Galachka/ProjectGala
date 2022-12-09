@@ -15,12 +15,15 @@ class NotesViewModel(application: Application) : AndroidViewModel(application) {
         val dao = NotesDatabase.getDatabaseInstance(application).myNotesDao()
         repository = NotesRepository(dao)
     }
+
     fun addNotes(notes: Notes){
         repository.insertNotes(notes)
     }
+
     fun getNotes():LiveData<List<Notes>> = repository.getAllNotes()
 
     fun getLowNotes(): LiveData<List<Notes>> = repository.getLowNotes()
+
     fun getMediumNotes(): LiveData<List<Notes>> = repository.getMediumNotes()
 
     fun getHighNotes(): LiveData<List<Notes>> = repository.getHighNotes()

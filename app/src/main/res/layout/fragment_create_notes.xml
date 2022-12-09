@@ -89,6 +89,4 @@
         android:src="@drawable/ic_baseline_check_24"
 
         />
-
-
 </FrameLayout>

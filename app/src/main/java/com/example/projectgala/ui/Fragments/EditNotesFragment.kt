@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.projectgala.Model.Notes
 import com.example.projectgala.R
@@ -24,6 +25,7 @@ class EditNotesFragment : Fragment() {
     lateinit var binding: FragmentEditNotesBinding
     var priority: String = "1"
     val viewModel : NotesViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -118,6 +120,9 @@ class EditNotesFragment : Fragment() {
             texviewYes?.setOnClickListener {
                 viewModel.deleteNotes(oldnotes.data.id!!)
                 bottomSheet.dismiss()
+                this.findNavController()
+                    .navigate(R.id.action_editNotesFragment_to_homeFragment)
+
             }
             texviewNo?.setOnClickListener {
                 bottomSheet.dismiss()

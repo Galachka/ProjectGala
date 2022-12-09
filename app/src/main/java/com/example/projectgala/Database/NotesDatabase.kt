@@ -11,21 +11,21 @@ import com.example.projectgala.Model.Notes
 abstract class NotesDatabase : RoomDatabase() {
     abstract fun myNotesDao(): NotesDao
 
-    companion object{
+    companion object {
         @Volatile
         var INSTANCE: NotesDatabase? = null
 
-        fun getDatabaseInstance(context: Context): NotesDatabase{
+        fun getDatabaseInstance(context: Context): NotesDatabase {
 
             val tempInstance = INSTANCE
-            if(tempInstance!= null){
+            if (tempInstance != null) {
                 return tempInstance
             }
             synchronized(this)
             {
                 val roomDatabaseInstance =
                     Room.databaseBuilder(
-                        context,NotesDatabase::class.java,
+                        context, NotesDatabase::class.java,
                         "Notes"
                     ).allowMainThreadQueries().build()
                 INSTANCE = roomDatabaseInstance
